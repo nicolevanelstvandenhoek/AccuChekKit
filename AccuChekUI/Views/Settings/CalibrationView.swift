@@ -42,7 +42,7 @@ struct CalibrationView: View {
             Spacer()
             if viewModel.isError {
                 Text("Calibration failed. Consult logs to find why", comment: "calibration error")
-                    .foregroundStyle(.red)
+                    .foregroundStyle(.pink)
             }
             Button(action: viewModel.calibrate) {
                 if viewModel.isLoading {

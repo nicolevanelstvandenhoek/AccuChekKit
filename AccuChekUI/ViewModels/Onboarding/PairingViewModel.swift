@@ -3,11 +3,12 @@ import LoopKit
 import SwiftUI
 
 class PairingViewModel: ObservableObject {
-    private let logger: AccuChekLogger
+    @Published var modelUnsupported = false
+
+    private let logger = AccuChekLogger(category: "PairingViewModel")
     private let cgmManager: AccuChekCgmManager
-    private let nextStep: () -> Void
+    let nextStep: () -> Void
     init(_ cgmManager: AccuChekCgmManager, scanResult: ScanResult?, nextStep: @escaping () -> Void) {
-        logger = AccuChekLogger(category: "PairingViewModel", cgmManager: cgmManager)
         self.cgmManager = cgmManager
         self.nextStep = nextStep
 
@@ -31,6 +32,13 @@ class PairingViewModel: ObservableObject {
             self.cgmManager.notifyStateDidChange()
 
             self.cgmManager.notifyUpdatedCgm(type: .sensorStart)
+            
+            if let model = self.cgmManager.state.sensorInfo?.model, model != "303" {
+                DispatchQueue.main.async {
+                    self.modelUnsupported = true
+                }
+                return
+            }
 
             self.nextStep()
         }

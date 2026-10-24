@@ -19180,6 +19180,18 @@
           }
         }
       }
+    },
+    "Live" : {
+      "extractionState" : "manual",
+      "comment" : "Sensor status display option: show live status",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

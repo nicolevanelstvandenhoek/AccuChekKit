@@ -1,5 +1,5 @@
 import Combine
-import HealthKit
+import LoopAlgorithm
 import SwiftUI
 
 class CalibrationViewModel: ObservableObject {
@@ -14,21 +14,21 @@ class CalibrationViewModel: ObservableObject {
     private let logger  = AccuChekLogger(category: "CalibrationViewModel")
     private let cgmManager: AccuChekCgmManager
     private let done: () -> Void
-    private let unit: HKUnit
-    init(cgmManager: AccuChekCgmManager, _ unit: HKUnit, _ done: @escaping () -> Void) {
+    private let unit: LoopUnit
+    init(cgmManager: AccuChekCgmManager, _ unit: LoopUnit, _ done: @escaping () -> Void) {
         self.cgmManager = cgmManager
         self.unit = unit
         self.done = done
         self.glucose = getStoredGlucose(cgmManager: cgmManager, unit)
     }
 
-    private func getStoredGlucose(cgmManager: AccuChekCgmManager, _ unit: HKUnit) -> UInt16 {
+    private func getStoredGlucose(cgmManager: AccuChekCgmManager, _ unit: LoopUnit) -> UInt16 {
         if let lastGlucose = cgmManager.state.lastGlucoseValue {
             if unit == .milligramsPerDeciliter {
                 return lastGlucose
             }
             
-            let value = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(lastGlucose))
+            let value = LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(lastGlucose))
             return UInt16(value.doubleValue(for: unit) * 10)
         }
         
@@ -45,7 +45,7 @@ class CalibrationViewModel: ObservableObject {
 
             var glucose = glucose
             if unit == .millimolesPerLiter {
-                let mgdl = HKQuantity(unit: unit, doubleValue: Double(glucose) / 10).doubleValue(for: .milligramsPerDeciliter)
+                let mgdl = LoopQuantity(unit: unit, doubleValue: Double(glucose) / 10).doubleValue(for: .milligramsPerDeciliter)
                 glucose = UInt16(mgdl)
             }
 

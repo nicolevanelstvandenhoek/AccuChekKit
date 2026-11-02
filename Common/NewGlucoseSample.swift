@@ -1,11 +1,11 @@
-import HealthKit
 import LoopKit
+import LoopAlgorithm
 
 extension NewGlucoseSample {
     init(cgmManager: AccuChekCgmManager, value: UInt16, condition: GlucoseCondition?, trend: GlucoseTrend?, dateTime: Date) {
         self.init(
             date: dateTime,
-            quantity: HKQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(value)),
+            quantity: LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(value)),
             condition: condition,
             trend: trend,
             trendRate: nil,
@@ -19,7 +19,7 @@ extension NewGlucoseSample {
     init(cgmManager: AccuChekCgmManager, calibrationValue: UInt16, dateTime: Date) {
         self.init(
             date: dateTime,
-            quantity: HKQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(calibrationValue)),
+            quantity: LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: Double(calibrationValue)),
             condition: nil,
             trend: nil,
             trendRate: nil,

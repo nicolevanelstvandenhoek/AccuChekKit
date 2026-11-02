@@ -21,7 +21,7 @@ class GetCalibrationPacketTests {
         #expect(packet.receivedResponse == true)
         #expect(packet.nextCalibrationOffset == 1260)
         #expect(packet.recordNumber == 1)
-        #expect(packet.calibrationStatus == 0)
+        #expect(packet.calibrationStatus == .ok)
     }
 
     // Real device capture. Response after all calibrations are completed.

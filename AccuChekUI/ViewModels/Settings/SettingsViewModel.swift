@@ -1,5 +1,4 @@
 import Combine
-import LoopAlgorithm
 import LoopKit
 import SwiftUI
 

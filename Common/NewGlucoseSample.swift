@@ -1,5 +1,4 @@
 import LoopKit
-import LoopAlgorithm
 
 extension NewGlucoseSample {
     init(cgmManager: AccuChekCgmManager, value: UInt16, condition: GlucoseCondition?, trend: GlucoseTrend?, dateTime: Date) {

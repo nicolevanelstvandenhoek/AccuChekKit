@@ -1,5 +1,4 @@
 import LoopKit
-import LoopAlgorithm
 
 public struct GlucoseDisplay: GlucoseDisplayable {
     public let isStateValid: Bool

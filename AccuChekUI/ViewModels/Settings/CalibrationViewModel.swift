@@ -1,5 +1,5 @@
 import Combine
-import LoopAlgorithm
+import LoopKit
 import SwiftUI
 
 class CalibrationViewModel: ObservableObject {

@@ -132,11 +132,10 @@ class AccuChekUIController: UINavigationController, CGMManagerOnboarding, Comple
             )
 
         case .settings:
-            let deleteCGM = {
-                self.cgmManager.delete {
-                    DispatchQueue.main.async {
-                        self.completionDelegate?.completionNotifyingDidComplete(self)
-                    }
+            let deleteCGM: () -> Void = {
+                Task { @MainActor in
+                    await self.cgmManager.delete()
+                    self.completionDelegate?.completionNotifyingDidComplete(self)
                 }
             }
 

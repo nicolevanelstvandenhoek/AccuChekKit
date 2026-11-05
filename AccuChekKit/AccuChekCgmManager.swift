@@ -261,11 +261,11 @@ public class AccuChekCgmManager: CGMManager {
         bluetooth.disconnect()
     }
 
-    public func delete(completion: @escaping () -> Void) {
+    public func delete() async {
         logger.info("Delete action triggered")
         cleanup()
 
-        notifyDelegateOfDeletion(completion: completion)
+        await cgmManagerDelegate?.cgmManagerWantsDeletion(self)
     }
 
     private func sendAlert(alerts: [SensorStatusEnum]) {

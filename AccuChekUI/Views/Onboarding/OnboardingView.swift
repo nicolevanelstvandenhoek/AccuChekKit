@@ -7,6 +7,10 @@ struct OnboardingView: View {
     let sensorPlacement: () -> Void
 
     var body: some View {
+        elaraBody.elaraListBackground()
+    }
+
+    @ViewBuilder private var elaraBody: some View {
         VStack(alignment: .leading) {
             List {
                 Section {

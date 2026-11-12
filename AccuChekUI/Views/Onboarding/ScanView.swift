@@ -5,6 +5,10 @@ struct ScanView: View {
     @ObservedObject var viewModel: ScanViewModel
 
     var body: some View {
+        elaraBody.elaraListBackground()
+    }
+
+    @ViewBuilder private var elaraBody: some View {
         VStack {
             List {
                 Section {

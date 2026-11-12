@@ -5,6 +5,10 @@ struct PairingView: View {
     @ObservedObject var viewModel: PairingViewModel
 
     var body: some View {
+        elaraBody.elaraListBackground()
+    }
+
+    @ViewBuilder private var elaraBody: some View {
         VStack {
             List {
                 Section {

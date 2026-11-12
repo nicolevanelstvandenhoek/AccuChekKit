@@ -45,6 +45,10 @@ struct SettingsView: View {
     }
 
     var body: some View {
+        elaraBody.elaraListBackground()
+    }
+
+    @ViewBuilder private var elaraBody: some View {
         List {
             Section {
                 VStack(spacing: 0) {
